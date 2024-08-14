@@ -18,27 +18,30 @@ export class AccountService {
       // user here is the DTO returned from API server
       map(user => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
+          this.setCurrentUser(user);
         }
       })
     );
-  }
-
-  logout() {
-    localStorage.removeItem('user');
-    this.currentUser.set(null);
   }
 
   register(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
+          this.setCurrentUser(user);
         }
         return user;
       })
     );
+  }
+
+  setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser.set(user);
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUser.set(null);
   }
 }
