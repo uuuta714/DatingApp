@@ -11,7 +11,6 @@ public interface IMessageRepository
     Task<Message?> GetMessage(int id);
     Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams);
     Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername);
-    Task<bool> SaveAllAsync();
     // Following methods are for tracking which users are in a group at any given time
     void AddGroup(Group group);
     void RemoveConnection(Connection connection);
