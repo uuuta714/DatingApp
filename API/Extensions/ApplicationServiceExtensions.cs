@@ -16,7 +16,7 @@ public static class ApplicationServiceExtensions
         services.AddDbContext<DataContext>(opt =>
         {
             // Specify which database service to use, then configure connection string
-            opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         });
 
         services.AddCors();
